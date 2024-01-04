@@ -13,11 +13,9 @@ def show_losses(train_loss_hist, test_loss_hist):
     plt.plot(np.arange(len(train_loss_hist)), train_loss_hist)
     plt.yscale('log')
     plt.grid()
-
     plt.subplot(1, 2, 2)
     plt.title('Test Loss')
     plt.plot(np.arange(len(test_loss_hist)), test_loss_hist)
     plt.yscale('log')
     plt.grid()
-
     plt.show()
