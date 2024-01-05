@@ -16,9 +16,9 @@ batch_size = 32
 data = TrainDataset(1)
 test_dataset = TestDataset()
 
-train_data, test_data = torch.utils.data.random_split(data, [0.8, 0.2])
+train_data, validation_data = torch.utils.data.random_split(data, [0.8, 0.2])
 train_loader = DataLoader(train_data, batch_size)
-test_loader = DataLoader(test_data, batch_size)
+validation_loader = DataLoader(validation_data, batch_size)
 test_dataloader = DataLoader(test_dataset, batch_size)
 
 model = Model()
@@ -26,8 +26,8 @@ model = model.to(device)
 loss_function = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
-min_loss, predictions = train(model, train_loader, test_loader, loss_function, optimizer, NUM_EPOCHS)
-y_true, pred = prepare_data(test_loader, predictions)
+min_loss, predictions = train(model, train_loader, validation_loader, loss_function, optimizer, NUM_EPOCHS)
+y_true, pred = prepare_data(validation_loader, predictions)
 print(f"f1_score = {f1_score(y_true, pred, average='weighted', zero_division=1)}")
 print(f"min_loss = {min_loss}")
 
