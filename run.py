@@ -1,5 +1,5 @@
 import torch
-from Datasets import augmenting
+from datasets import augmenting
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

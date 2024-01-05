@@ -1,13 +1,13 @@
-from Model import Model
-from Datasets import TrainDataset, TestDataset
+from model import Model
+from datasets import TrainDataset, TestDataset
 import torch
 from torch import nn
 from torch.utils.data import DataLoader
-from Metrics import prepare_data
+from metrics import prepare_data
 from sklearn.metrics import f1_score
-from Predict import predict
+from predict import predict
 import pandas as pd
-from Training import train
+from training import train
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 NUM_EPOCHS = 30

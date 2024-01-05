@@ -1,4 +1,4 @@
-from Model import Model
+from model import Model
 import torch
 from torch import nn
 

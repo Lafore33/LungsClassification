@@ -1,5 +1,5 @@
-from Graphs import show_losses
-from Run import run
+from graphs import show_losses
+from run import run
 import torch
 
 
