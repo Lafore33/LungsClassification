@@ -10,7 +10,7 @@ import pandas as pd
 from training import train
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-NUM_EPOCHS = 30
+NUM_EPOCHS = 1
 batch_size = 32
 
 data = TrainDataset(1)
@@ -26,7 +26,11 @@ model = model.to(device)
 loss_function = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
+print("Training started")
+
 min_loss, predictions = train(model, train_loader, validation_loader, loss_function, optimizer, NUM_EPOCHS)
+
+print("Training finished")
 y_true, pred = prepare_data(validation_loader, predictions)
 print(f"f1_score = {f1_score(y_true, pred, average='weighted', zero_division=1)}")
 print(f"min_loss = {min_loss}")
@@ -36,10 +40,10 @@ print(f"min_loss = {min_loss}")
 model = Model()
 model.load_state_dict(torch.load(path))'''
 
-model.eval()
+print("Testing stared")
 predictions = predict(test_dataloader, model)
 
 # create a file with predictions
 df = pd.DataFrame(predictions, columns=["target_feature"])
 df.insert(loc=0, column='id', value=range(6920))
-df.to_csv('Submission', index=False)
+df.to_csv('Submission.csv', index=False)

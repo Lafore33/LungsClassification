@@ -2,6 +2,7 @@ from torch import nn
 
 
 def predict(test_dataloader, model):
+    model.eval()
     predictions = []
     for images in test_dataloader:
         raw_predictions = model(images)

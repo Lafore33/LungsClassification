@@ -10,12 +10,12 @@ from random import randrange
 
 class TrainDataset(torch.utils.data.Dataset):
     def __init__(self, mask_mode=0):
-        data = pd.read_csv('./data/train_answers.csv')
+        data = pd.read_csv('/Users/Downloads/data/train_answers.csv')
         data['img_name'] = data['id'].apply(lambda x: f'img_{x}.png')
 
         self.img_labels = data
-        self.train_dir = './data/train_images/'
-        self.mask_dir = './data/train_lung_masks/'
+        self.train_dir = '/Users/Downloads/data/train_images/'
+        self.mask_dir = '/Users/Downloads/data/train_lung_masks/'
         self.transform = Compose([PILToTensor(), ToDtype(torch.float32, scale=True), Resize(224, antialias=None)])
         self.mask_mode = mask_mode
 
@@ -51,7 +51,7 @@ class TestDataset(torch.utils.data.Dataset):
         data['id'] = range(6920)
         data['img_name'] = data['id'].apply(lambda x: f'img_{x}.png')
         self.img_labels = data
-        self.test_dir = './data/test_images/'
+        self.test_dir = '/Users/Downloads/data/test_images/'
         self.transform = Compose([PILToTensor(), ToDtype(torch.float32, scale=True)])
 
     def __len__(self):
