@@ -1,2 +1,2 @@
-# LungsClassification
+# Lungs Classification
 
